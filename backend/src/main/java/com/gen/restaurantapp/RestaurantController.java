@@ -2,7 +2,6 @@ package com.gen.restaurantapp;
 
 import com.gen.restaurantapp.model.Restaurant;
 import com.gen.restaurantapp.service.RestaurantService;
-import jakarta.websocket.server.PathParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +38,7 @@ public class RestaurantController {
     @PutMapping("/update")
     public ResponseEntity<Restaurant> updateRestaurant(@RequestBody Restaurant restaurant) {
         Restaurant updateRestaurant = restaurantService.updateRestaurant(restaurant);
-        return new ResponseEntity<>(updateRestaurant, HttpStatus.CREATED);
+        return new ResponseEntity<>(updateRestaurant, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
