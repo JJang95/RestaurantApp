@@ -1,0 +1,178 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <a class="navbar-brand" href="#">
+    <img class="rounded-image" src="assets/logo.png">
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" (click)="onOpenModal(null, 'add')">Got A New Selection?<span class="sr-only">(current)</span></a>
+        </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+        <input type="search" (ngModelChange)="searchRestaurants(key.value)" #key="ngModel" ngModel
+        name="key" id="searchName" class="form-control mr-sm-2" placeholder="Looking for a New Selection?" required>
+    </form>
+  </div>
+
+</nav>
+
+<div class="container-fluid" id="main-container">
+
+  <div class="row ">
+    <div *ngFor="let restaurant of restaurants" class="col-md-6 col-xl-3 d-flex">
+      <div class="card m-b-30">
+          <div class="card-body flex-fill row">
+            <div class="col-6">
+                <a [href]="restaurant?.image" target="_blank"><img src="{{restaurant?.image}}" alt="" class="img-fluid img w-60"></a>
+            </div>
+            <div class="col-6 card-title align-self-center mb-0 ">
+                <h5>{{restaurant?.name}}</h5>
+            </div>
+          </div>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex"><i class="fa fa-envelope float-right"></i>${{restaurant?.price}}</li>
+            <li class="list-group-item d-flex"><i class="fa fa-envelope float-right"></i>{{restaurant?.type}}</li>
+            <li class="list-group-item d-flex"><i class="fa fa-envelope float-right"></i>{{restaurant?.description}}</li>
+          </ul>
+
+          <div class="card-body flex-fill selectors">
+            <div class="float-right btn-group btn-group-sm">
+                <a (click)="onOpenModal(restaurant, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                <a (click)="onOpenModal(restaurant, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Restaurant Modal -->
+  <div class="modal fade" id="addRestaurantModal" tabindex="-1" role="dialog" aria-labelledby="addRestaurantModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="addRestaurantModalLabel">Add new Restaurant</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <form #addForm = "ngForm" (ngSubmit)="onAddRestaurant(addForm)">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Name" required>
+              </div>
+              <div class="form-group">
+                <label for="type">Type</label> <!-- Restaurant -->
+                <input type="text" ngModel name="type" class="form-control" id="type" placeholder="Type" required>
+              </div>
+              <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" ngModel name="price" class="form-control" id="price" placeholder="Price" required>
+              </div>
+              <div class="form-group">
+                <label for="image">Image</label>
+                <input type="text" ngModel name="image" class="form-control" id="image" placeholder="Image" required>
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" ngModel name="description" class="form-control" id="description" placeholder="Description" required>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="add-restaurant-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+              </div>
+            </form>
+
+        </div>
+      </div>
+    </div>
+    </div>
+
+  <!-- Edit Restaurant Modal -->
+  <div class="modal fade" id="updateRestaurantModal" tabindex="-1" role="dialog" aria-labelledby="restaurantEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="updateRestaurantModalLabel">Currently editing: {{editRestaurant?.name}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <form #editForm = "ngForm">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" ngModel = {{editRestaurant?.name}} name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Name">
+                </div>
+
+                <input type="hidden" ngModel = {{editRestaurant?.id}} name="id" class="form-control" id="id" placeholder="Name">
+
+                <div class="form-group">
+                  <label for="type">Type</label>
+                  <input type="text" ngModel = {{editRestaurant?.type}} name="type" class="form-control" id="type" placeholder="Type">
+                </div>
+
+                <div class="form-group">
+                  <label for="price">Price</label>
+                  <input type="number" ngModel = {{editRestaurant?.price}} name="price" class="form-control" id="price" placeholder="Price">
+                </div>
+
+                <div class="form-group">
+                  <label for="image">Image</label>
+                  <input type="text" ngModel = {{editRestaurant?.image}} name="image" class="form-control" id="image" placeholder="Image">
+                </div>
+
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <input type="text" ngModel = {{editRestaurant?.description}} name="description" class="form-control" id="description" placeholder="Description">
+                </div>
+
+                <div class="modal-footer">
+                  <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                  <button (click) = "onUpdateRestaurant(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+                </div>
+            </form>
+
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Restaurant Modal -->
+  <div class="modal fade" id="deleteRestaurantModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModelLabel">Delete Restaurant</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to delete {{deleteRestaurant?.name}}?</p>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button (click)="onDeleteRestaurant(deleteRestaurant?.id!)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Notification for no Restaurant -->
+<div *ngIf="restaurants?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">No Selections!</h4>
+  <p>No Selections were found.</p>
+</div>
+</div>
