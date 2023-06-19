@@ -1,4 +1,4 @@
-package com.gen.restaurantapp;
+package com.gen.restaurantapp.controller;
 
 import com.gen.restaurantapp.model.Restaurant;
 import com.gen.restaurantapp.service.RestaurantService;
