@@ -28,7 +28,6 @@ public class User implements Serializable
            cascade = CascadeType.ALL,
            orphanRemoval = true
    )
-   @JoinColumn(name = "user_id")
    private List<Restaurant> plates = new ArrayList<>();
 
    public void addPlate(Restaurant plate)
