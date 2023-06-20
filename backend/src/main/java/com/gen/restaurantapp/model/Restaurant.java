@@ -16,15 +16,20 @@ public class Restaurant implements Serializable {
     private String description;
     private String image;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Restaurant() {
     }
 
-    public Restaurant(String name, String type, Long price, String description, String image) {
+    public Restaurant(String name, String type, Long price, String description, String image, User user) {
         this.name = name;
         this.type = type;
         this.price = price;
         this.description = description;
         this.image = image;
+        this.user = user;
     }
 
     public Long getId() {

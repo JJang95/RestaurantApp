@@ -49,4 +49,16 @@ public class UserController {
       return new ResponseEntity<>(HttpStatus.OK);
    }
 
+   @PostMapping("/add/{userId}/plate/{plateId}")
+   public ResponseEntity<User> addPlate(@PathVariable("userId") Long userId, @PathVariable("plateId") Long plateId) {
+      User user = userService.addPlate(userId, plateId);
+      return new ResponseEntity<>(user, HttpStatus.OK);
+   }
+
+   @DeleteMapping("/delete/{userId}/plate/{plateId}")
+   public ResponseEntity<User> deletePlate(@PathVariable("userId") Long userId, @PathVariable("plateId") Long plateId) {
+      User user = userService.removePlate(userId, plateId);
+      return new ResponseEntity<>(user, HttpStatus.OK);
+   }
+
 }

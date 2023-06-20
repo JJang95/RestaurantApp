@@ -1,8 +1,10 @@
 package com.gen.restaurantapp.model;
 
 import java.io.Serializable;
-import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.*;
 @Entity
 public class User implements Serializable
 {
@@ -20,6 +22,23 @@ public class User implements Serializable
    private String foodSafetyDoc;
    private String email;
    private String password;
+
+   @OneToMany(
+           mappedBy = "user",
+           cascade = CascadeType.ALL,
+           orphanRemoval = true
+   )
+   @JoinColumn(name = "user_id")
+   private List<Restaurant> plates = new ArrayList<>();
+
+   public void addPlate(Restaurant plate)
+   {
+      plates.add(plate);
+   }
+   public void removePlate(Restaurant plate)
+   {
+      plates.remove(plate);
+   }
 
    public User()
    {
@@ -141,7 +160,9 @@ public class User implements Serializable
               ", foodSafetyDoc='" + foodSafetyDoc + '\'' +
               ", email='" + email + '\'' +
               ", password='" + password + '\'' +
+              ", plates=" + plates +
               '}';
    }
+
 //private String createdAt; //TODO implement creation time
 }

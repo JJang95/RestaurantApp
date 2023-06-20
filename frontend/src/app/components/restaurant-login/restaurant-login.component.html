@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <!-- fontawesome cdn for icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
+  <!-- main css file -->
+  <link rel="stylesheet" href="restaurant-login.component.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="welcome">
+      <img class="rounded-image" src="assets/logo.png">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+
+<div class="container">
+
+    <!-- form start -->
+  <div class="my-form">
+    <div class="form-title">
+      <h1>Restaurant Login </h1>
+    </div>
+    <!-- main form -->
+    <form action= "" class="text-center" [formGroup]="restaurantForm" (ngSubmit)="restaurantLogin()">
+      <div class="single-input">
+        <span><i class="fas fa-user"></i></span>
+        <input type="text" class="form-control" formControlName="email" name="email" placeholder="Email">
+      </div>
+      <div class="single-input">
+        <span><i class="fas fa-unlock"></i></span>
+        <input type="password" class="form-control" formControlName="password" placeholder="Password">
+      </div>
+
+      <div class="single-input submit-btn">
+        <input type="submit" value="Login">
+      </div>
+    </form>
+
+  </div>
+
+
+</div>
+
+
+
+
+
+</body>
+</html>
