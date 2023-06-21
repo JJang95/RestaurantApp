@@ -4,10 +4,13 @@ import com.gen.restaurantapp.model.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 @Repository
 public interface RestaurantRepo extends JpaRepository<Restaurant, Long> {
     void deleteRestaurantById(Long id);
 
     Optional<Restaurant> findRestaurantById(Long id);
+
+    List<Restaurant> findAllByuser_id(Long user_id);
 }
