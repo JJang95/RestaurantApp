@@ -27,13 +27,18 @@ export class AdminLoginComponent implements OnInit{
   }
 
   async adminLogin(){
-    console.log(this.adminForm.value);
     let resp = this.service.login(this.adminForm.value);
     resp.subscribe({
-      next: () => this.router.navigate(["restaurant"]),
+      next: (response) => {
+        if(response.toString()===("true")){
+          this.router.navigate(["restaurant"]);
+        }
+      },//this.router.navigate(["restaurant"]),
       error: (error) => this.failed = true
     });
   }
+
+
 
   ngOnInit(){
 

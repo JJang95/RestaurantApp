@@ -14,6 +14,16 @@
           <a class="nav-link" (click)="onOpenModal(null, 'add')">Got A New Selection?<span class="sr-only">(current)</span></a>
         </li>
     </ul>
+
+
+    <a class="navbar-brand" href="login">
+      <img class="rounded-image" src="assets/logo.png">
+    </a>
+    <button class="navbar-toggler" type="button"  data-toggle="collapse" data-target="#navbarColor02" (ngSubmit)="logout()" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
     <form class="form-inline my-2 my-lg-0">
         <input type="search" (ngModelChange)="searchRestaurants(key.value)" #key="ngModel" ngModel
         name="key" id="searchName" class="form-control mr-sm-2" placeholder="Looking for a New Selection?" required>
