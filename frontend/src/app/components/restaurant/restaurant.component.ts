@@ -48,6 +48,7 @@ export class RestaurantComponent implements OnInit {
     );
   }
 
+
   public onUpdateRestaurant(restaurant: Restaurant): void {
     this.restaurantService.updateRestaurant(restaurant).subscribe(
       (response: Restaurant) => {
@@ -122,6 +123,7 @@ export class RestaurantComponent implements OnInit {
       alert(error.message);
     }
   );
+
   //
   // (response: this.restaurantService.logout()) => {
   //   this.restaurants = response;

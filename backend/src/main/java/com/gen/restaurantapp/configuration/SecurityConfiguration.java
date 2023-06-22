@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                         .permitAll()
                         .requestMatchers("admin/add")
                         .permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults());
