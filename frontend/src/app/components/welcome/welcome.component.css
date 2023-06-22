@@ -1,0 +1,12 @@
+nav{
+  display: flex;
+  justify-content: space-between;
+}
+
+.title{
+  color: orange;
+}
+
+.login{
+  transform: rotate(90deg);
+}
