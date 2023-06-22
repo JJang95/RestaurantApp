@@ -1,4 +1,5 @@
 import { Component,Input, OnInit } from '@angular/core';
+import { RestaurantService } from '../../restaurant.service'
 import {FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms'
 import { Router } from '@angular/router'
 
@@ -12,9 +13,11 @@ export class AdminLoginComponent implements OnInit{
   email: string = "";
   password: string = "";
 
+  failed: boolean = false;
+
   adminForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router){
+  constructor(private formBuilder: FormBuilder, private router: Router, private service: RestaurantService){
 
     //This is showing the email and password visible
     this.adminForm = new FormGroup({
@@ -24,9 +27,18 @@ export class AdminLoginComponent implements OnInit{
   }
 
   async adminLogin(){
-    console.log(this.adminForm.value);
-    this.router.navigate(["restaurant"]);
+    let resp = this.service.login(this.adminForm.value);
+    resp.subscribe({
+      next: (response) => {
+        if(response.toString()===("true")){
+          this.router.navigate(["restaurant"]);
+        }
+      },//this.router.navigate(["restaurant"]),
+      error: (error) => this.failed = true
+    });
   }
+
+
 
   ngOnInit(){
 
