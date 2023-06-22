@@ -15,7 +15,8 @@ export class RestaurantComponent implements OnInit {
   public editRestaurant: Restaurant | undefined;
   public deleteRestaurant: Restaurant | undefined;
 
-  constructor (private restaurantService: RestaurantService) {}
+  failed: boolean = false;
+  constructor (private router: Router, private restaurantService: RestaurantService) {}
 
   ngOnInit() {
     this.getRestaurants();
@@ -105,5 +106,28 @@ export class RestaurantComponent implements OnInit {
     }
     container?.appendChild(button);
     button.click();
+  }
+
+  async logout(){
+    let resp = this.restaurantService.logout();
+  //   resp.subscribe({
+  //     next: resp => this.router.navigate(["login"]),
+  //     error:  (error) => this.failed=true//(error)=> this.failed = true
+  //   })
+  resp.subscribe(
+    response => {
+      console.log(response);
+    },
+    (error: HttpErrorResponse) =>{
+      alert(error.message);
+    }
+  );
+  //
+  // (response: this.restaurantService.logout()) => {
+  //   this.restaurants = response;
+  // },
+  // (error: HttpErrorResponse) => {
+  //   alert(error.message);
+  // }
   }
 }

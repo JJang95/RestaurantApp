@@ -39,6 +39,12 @@ export class RestaurantService {
     sessionStorage.setItem("headers", btoa(email+":"+password));
     return  this.http.get("http://localhost:8080/authentication",{headers, responseType: 'text' as 'json'});
   }
+
+  public logout(){
+    const url:string = `${this.apiServerUrl}`+"logout";
+    sessionStorage.removeItem("headers");
+    return this.http.get(url);
+  }
   // http://localhost:8080/authentication
   //
   // public async userid(username: string):Promise<string>{
