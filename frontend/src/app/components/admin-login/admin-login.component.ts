@@ -31,7 +31,7 @@ export class AdminLoginComponent implements OnInit{
     resp.subscribe({
       next: (response) => {
         if(response.toString()===("true")){
-          this.router.navigate(["restaurant"]);
+          this.router.navigate(["admin"]);
         }
       },//this.router.navigate(["restaurant"]),
       error: (error) => this.failed = true

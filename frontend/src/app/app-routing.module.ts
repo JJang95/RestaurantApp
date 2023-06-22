@@ -8,6 +8,7 @@ import { RestaurantLoginComponent} from './components/restaurant-login/restauran
 import { RestaurantComponent} from './components/restaurant/restaurant.component';
 import { WelcomeComponent} from './components/welcome/welcome.component';
 import { LoginComponent} from './components/login/login.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'adminLogin', component: AdminLoginComponent},
   { path: 'restauarantLogin', component: RestaurantLoginComponent},
   { path: 'restaurant', component: RestaurantComponent},
-  { path: 'login', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: 'admin', component: AdminComponent}
 ];
 
 @NgModule({
