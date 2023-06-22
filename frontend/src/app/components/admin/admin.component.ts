@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Restaurant } from '../../restaurant';
 import { RestaurantService } from '../../restaurant.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
+import { NgForm} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -122,6 +122,7 @@ export class AdminComponent implements OnInit {
       alert(error.message);
     }
   );
+
   //
   // (response: this.restaurantService.logout()) => {
   //   this.restaurants = response;
