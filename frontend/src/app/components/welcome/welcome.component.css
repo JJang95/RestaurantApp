@@ -2,11 +2,7 @@ nav{
   display: flex;
   justify-content: space-between;
 }
-
-.title{
+div.title{
   color: orange;
-}
-
-.login{
-  transform: rotate(90deg);
+  font-size: 50px;
 }
