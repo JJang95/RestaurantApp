@@ -25,7 +25,7 @@ public class UserService {
       this.restaurantService = restaurantService;
    }
    @Autowired
-   private PasswordEncoder passwordEncoder;
+  private PasswordEncoder passwordEncoder;
    public User addUser(User user) {
       user.setPassword(passwordEncoder.encode(user.getPassword()));
 

@@ -10,7 +10,7 @@ import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
 
-@SpringBootApplication(exclude = SecurityAutoConfiguration.class) //Remove exclusion once proper spring security is implemented
+@SpringBootApplication//(exclude = SecurityAutoConfiguration.class) //Remove exclusion once proper spring security is implemented
 public class RestaurantappApplication {
 
 	public static void main(String[] args) {
