@@ -23,10 +23,9 @@ export class RestaurantLoginComponent implements OnInit {
 
   async restaurantLogin(){
     console.log('hello world');
-    this.router.navigate(['adminLogin']);
-
+    this.router.navigate(['restaurant']);
   }
-
+  
   ngOnInit(){
 
   }
