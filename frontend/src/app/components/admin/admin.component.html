@@ -1,0 +1,97 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <a class="navbar-brand" href="#">
+    <img class="rounded-image" src="assets/logo.png">
+  </a>
+
+<!-- collapsable button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" (click)="onOpenModal(null, 'add')">Add a new Restaurant?<span class="sr-only">(current)</span></a>
+        </li>
+    </ul>
+
+
+    <form class="form-inline my-2 my-lg-0">
+      <input type="search" name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search restaurant" required>
+    </form>
+
+
+    <a class="navbar-brand" href="login">
+      <img class="rounded-image" src="assets/LogoutButtonRestaurant.drawio.png">
+    </a>
+  </div>
+</nav>
+
+<div class="container-fluid" id="main-container">
+
+<!-- ADD RestaurantUser Modal -->
+<div class="modal fade" id="addRestaurantUserModal" tabindex="-1" role="dialog" aria-labelledby="addRestaurantUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class = "modal-header">
+        <h5 class="modal-title" id="addRestaurantUserModalLabel">Add a new Restaurant</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form #addForm = "ngForm" (ngSubmit)="onAddRestaurantUser(addForm)">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Name" require>
+            </div>
+            <div class="form-group">
+              <label for="email">Image</label>
+              <input type="text" ngModel name="image" class="form-control" id="image" placeholder="URL">
+            </div>
+            <div class="form-group">
+              <label for="email">Description</label>
+              <input type="text" ngModel name="description" class="form-control" id="description" placeholder="About" require>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" ngModel name="email" class="form-control" id="email" placeholder="Email" require>
+            </div><div class="form-group">
+              <label for="email">Password</label>
+              <input type="text" ngModel name="password" class="form-control" id="password" placeholder="Password" require>
+            </div><div class="form-group">
+              <label for="email">Address</label>
+              <input type="text" ngModel name="address" class="form-control" id="address" placeholder="Address" require>
+            </div><div class="form-group">
+              <label for="email">Phone Number</label>
+              <input type="text" ngModel name="phone" class="form-control" id="phone" placeholder="Phone Number" require>
+            </div><div class="form-group">
+              <label for="email">Food Safety Documentation</label>
+              <input type="text" ngModel name="FSD" class="form-control" id="FSD" placeholder="Document" require>
+            </div>
+
+
+            <div class="modal-footer">
+              <button type="button" id="add-restaurant-user-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Add Restaurant</button>
+            </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<!-- Notification for no Restaurant -->
+<div *ngIf="restaurantUsers?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">No Selections!</h4>
+  <p>No Selections were found.</p>
+</div>
+</div>
