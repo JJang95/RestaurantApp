@@ -31,3 +31,7 @@ frontend/.angular/cache/14.2.11/angular-webpack/f0084fb8d2f00c03f44df363e988cc51
 frontend/.angular/cache/14.2.11/angular-webpack/f0084fb8d2f00c03f44df363e988cc511c1f3cd2/1.pack
 frontend/.angular/cache/14.2.11/angular-webpack/f0084fb8d2f00c03f44df363e988cc511c1f3cd2/0.pack
 frontend/.angular/cache/14.2.11/babel-webpack/ee0e709c487133f91721e3d028b814e3.json
+*.pack
+*.json
+*.pack
+*.pack
