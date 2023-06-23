@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Restaurant } from './restaurant';
+import { RestaurantUser} from './restaurantUser'
 import { environment } from 'src/environments/environment';
 
 
@@ -29,6 +30,15 @@ export class RestaurantService {
   public deleteRestaurant(restaurantId: number): Observable<void>{
     return this.http.delete<void>(`${this.apiServerUrl}/restaurant/delete/${restaurantId}`);
   }
+  /** CRUD For Restaurant Users **/
+public getRestaurantUsers(): Observable<any>{
+  return this.http.get<any>(`${this.apiServerUrl}/user/all`);
+}
+public addRestaurantUser(resUser: RestaurantUser): Observable<RestaurantUser>{
+
+}
+
+
 
   public login(auth: any){
     const email = auth.email;
